@@ -1,0 +1,10 @@
+#!/bin/bash
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+out_dir="$script_dir/../out"
+build_dir="$script_dir/../build"
+main="$script_dir/../"
+
+cd "$out_dir" && rm -r ./* 
+cd $build_dir && rm -r ./*
+latexmk -xelatex -pvc -auxdir=$build_dir -outdir=$out_dir "$main/main.tex"
