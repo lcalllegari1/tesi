@@ -1,0 +1,54 @@
+ % numbered dividers depth & TOC depth
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+
+% set dividers style (font and size)
+
+% chapters head
+\renewcommand{\chapnumfont}{\Huge\bfseries\alt}
+\renewcommand{\chaptitlefont}{\Huge\bfseries\alt}
+
+\renewcommand{\printchaptername}{} % remove "Capitolo" in chapter title
+\renewcommand{\printchapternum}{} % remove chapter num in chapter title
+
+% remove page numbers from chapter pages (using empty pagestyle)
+\let\oldchapter\chapter
+\renewcommand{\chapter}[1]{
+    \oldchapter{#1}
+    \thispagestyle{empty}
+}
+
+% chapter title style
+\renewcommand{\printchaptertitle}[1]{
+    \centering\chaptitlefont
+    \ifnum\value{chapter} > 0
+        \raisebox{15pt}{\scalebox{.4}{\pgfornament{11}}}\hspace{5pt}
+        {\fontsize{50pt}{0pt}\alt\thechapter}
+        \hspace{5pt}\raisebox{15pt}{\scalebox{.4}{\pgfornament{14}}}
+        \\[10pt]
+        \hrule height 2pt \vspace{2pt} \hrule height 1pt \vspace{10pt}
+        #1
+        \vspace{10pt} \hrule height 1pt \vspace{2pt} \hrule height 2pt
+    \else
+        \raisebox{15pt}{\scalebox{.45}{\pgfornament{46}}}\\[10pt]
+        {\fontsize{40pt}{0pt}\alt #1}\\
+        \raisebox{15pt}{\scalebox{.6}{\pgfornament{88}}}\\
+    \fi
+}
+
+% define custom font size
+\makeatletter
+\newcommand{\fortypt}{\@setfontsize\fiftypt{40}{0}} % Adjust the numbers as needed
+\makeatother
+
+% sections head
+\setsecheadstyle{\Large\bfseries\alt}
+\setsubsecheadstyle{\large\bfseries\alt}
+\setsubsubsecheadstyle{\bfseries\alt}
+
+% abstract config
+\addto{\captionsitalian}{\renewcommand{\abstractname}{
+        \raisebox{15pt}{\scalebox{.5}{\pgfornament{45}}}\\[10pt]
+        Abstract\\[15pt]
+        \raisebox{15pt}{\scalebox{.6}{\pgfornament{88}}}\\}}
+

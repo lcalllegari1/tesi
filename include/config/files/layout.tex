@@ -1,0 +1,28 @@
+% <<< margins <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\setlrmarginsandblock{3cm}{2cm}{*} % {spine}{edge}{ratio}
+\setulmarginsandblock{3cm}{3cm}{*} % {upper}{lower}{ratio}
+
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+% <<< headers & footers <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\setheadfoot{\baselineskip}{0cm} % {headheight}{footskip}
+\setheaderspaces{2cm}{*}{*} % {headdrop}{headsep}{ratio}
+
+\makepagestyle{thesis} % create new page style
+
+% change roman page numbers font
+\makeatletter
+\def\@roman#1{{\alt\romannumeral #1}}
+\makeatother
+
+\makeevenhead{thesis}{\alt\thepage}{}{\alt\leftmark} % {style}{left}{center}{right}
+\makeoddhead{thesis}{\alt\rightmark}{}{\alt\thepage} % {style}{left}{center}{right}
+\makeheadrule{thesis}{\textwidth}{\normalrulethickness}
+
+\pagestyle{thesis} % apply thesis pagestyle
+\OnehalfSpacing % set linespread to 1.5
+
+% >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
