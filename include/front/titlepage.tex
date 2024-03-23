@@ -1,1 +1,71 @@
+% the \calccentering and adjustwidth center the content with respect to the
+% paper, not the typeblock (that otherwise would be shifted to the right,
+% since the first page is a recto page, odd numbered). If you don't want
+% the first page to be centered, and you want it to follow the defined
+% style for the margins, just remove the commands, and put the code located
+% in TITLEPAGE CONTENT inside the titlingpage environment. The \centering
+% command is used to center the content with respect to the typeblock, thus
+% should not be removed. The commands used in this file require the
+% package eso-pic, that should be included in packages.tex.
 
+\begin{titlingpage}
+    \calccentering{\unitlength}
+    \begin{adjustwidth*}{\unitlength}{-\unitlength}
+        % <<< TITLEPAGE CONTENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        \centering
+        % add the background logo
+        \AddToShipoutPictureBG*{\AtPageLowerLeft{
+            \includegraphics{assets/icons/background} % path relative to main.tex
+        }}
+
+        % add the header at the top
+        \includegraphics{assets/icons/header} \vspace{2cm}
+
+        % contents
+
+        {
+            {\huge\alt UNIVERSIT\`A DEGLI STUDI DI PADOVA} \\[.5cm]
+            {\scshape\large Corso di Laurea Triennale in Ingegneria Informatica}
+        }
+
+        \vspace{2cm}
+
+        {
+             \rule[10pt]{\textwidth}{2pt}
+                {\twentytwopt\bfseries\alt % TITLE HERE ===================
+                    \centering
+                    % first line
+                    {
+                        Placeholder
+                    } \\[10pt]
+                    % second line
+                    {
+                        Placeholder
+                    }
+                } % =======================================================
+            \rule{\textwidth}{2pt}
+         }
+
+         \vspace{3cm}
+
+         {
+            \large
+            \begin{tabular}{l @{\hspace{4cm}} r}
+                \text{\textit{\alt\large Relatore}} &
+                \text{\textit{\alt\large Laureando}} \\[5pt]
+                Prof. Domenico Salvagnin & Leonardo Callegari
+            \end{tabular}
+         }
+
+         \vspace{3cm}
+
+         {
+            \textsc{\large Anno Accademico 2023 - 2024}\\[1cm]
+            \textit{\alt\large Data di Laurea}\\[5pt]
+            \hspace*{1pt}
+            % DATE HERE ===================================================
+            % =============================================================
+         }
+        % >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    \end{adjustwidth*}
+\end{titlingpage}
