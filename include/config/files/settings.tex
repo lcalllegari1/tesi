@@ -53,3 +53,86 @@
         Abstract\\[15pt]
         \raisebox{15pt}{\scalebox{.6}{\pgfornament{88}}}\\}}
 
+% hyperref setup
+\definecolor{indigo}{HTML}{004777}
+\definecolor{unipd}{HTML}{9B0014}
+\definecolor{gray1}{RGB}{245, 245, 245}
+\definecolor{gray2}{RGB}{230, 230, 230}
+
+\hypersetup{
+    colorlinks = true,
+    linkbordercolor = white,
+    linkcolor = unipd,
+    urlcolor = indigo,
+    citecolor = unipd
+}
+
+% change the url font
+\renewcommand{\UrlFont}{\alt}
+
+% fix compile warning PDF string (hyperref)
+\pdfstringdefDisableCommands{
+    \def\alt{}
+}
+
+% code snippets config
+\newcommand{\algtitle}[3]{\alt
+    {\bfseries Algoritmo}: {\scriptsize\jbm #1} \\
+    {\bfseries Input}: #2 \\
+    {\bfseries Output}: #3
+}
+
+\newmdenv[style=listing]{internalcode}
+
+\newenvironment{code}[2]{
+    \begin{internalcode}[
+        frametitle=#1,
+        frametitlealignment=#2
+     ]
+}
+{
+    \end{internalcode}
+}
+
+\newenvironment{captioncode}[1]{
+    \captionof{lstlisting}{#1}
+    \begin{internalcode}
+}
+{
+    \end{internalcode}
+}
+
+\newenvironment{wrapper}{}{}
+
+\mdfdefinestyle{listing}{
+   backgroundcolor = gray1,
+   linecolor = gray2,
+   linewidth = 1pt,
+   roundcorner = 2pt,
+   frametitlefont = \alt,
+   frametitlealignment = \centering,
+   frametitlebelowskip = 5pt,
+   frametitlerule = true,
+   frametitlerulewidth = .8pt,
+}
+
+\lstdefinestyle{default}{
+    basicstyle = \scriptsize\jbm,
+    tabsize = 4,
+    numbers = left,
+    numberstyle = \tiny\jbm,
+    numbersep = 5pt,
+    numberblanklines = false,
+    columns = flexible,
+    breaklines = true,
+    captionpos = b,
+    keywordstyle = \bfseries\color{indigo},
+    commentstyle = \itshape\color[HTML]{157F1F},
+    stringstyle = \color[HTML]{F45B69},
+    showstringspaces = false,
+    escapechar = §,
+    xleftmargin = 15pt,
+    breakatwhitespace = true,
+    breakautoindent = true,
+}
+
