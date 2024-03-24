@@ -1,0 +1,37 @@
+% This file contains the structure used to write code snippets inside the
+% document. Commands refer to the settings.tex file in the project folder.
+
+% algorithm specification listing, it defaults to frametitle and caption.
+\begin{code}{\algtitle
+{% name
+Name
+}
+{% input
+Input
+}
+{% output
+Output
+}}
+{ % text alignment (\centering, \flushleft). If empty, text is justified.
+
+}
+\begin{lstlisting}[
+    style=default,
+    language=python,
+    caption={Algoritmo}
+]
+# code here
+\end{lstlisting}
+\end{code}
+
+% basic listing, no frametitle, no caption, only raw code.
+% \begin{code}{frametitle}{frametitle alignment}
+\begin{code}{}{}
+\begin{lstlisting}[
+    style=default,
+    language=python,
+]
+# code here
+\end{lstlisting}
+\end{code}
+
