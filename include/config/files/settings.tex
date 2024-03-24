@@ -56,8 +56,8 @@
 % hyperref setup
 \definecolor{indigo}{HTML}{004777}
 \definecolor{unipd}{HTML}{9B0014}
-\definecolor{gray1}{RGB}{245, 245, 245}
-\definecolor{gray2}{RGB}{230, 230, 230}
+\definecolor{grayfiller}{RGB}{245, 245, 245}
+\definecolor{grayborder}{RGB}{230, 230, 230}
 
 \hypersetup{
     colorlinks = true,
@@ -105,8 +105,8 @@
 \newenvironment{wrapper}{}{}
 
 \mdfdefinestyle{listing}{
-   backgroundcolor = gray1,
-   linecolor = gray2,
+   backgroundcolor = grayfiller,
+   linecolor = grayborder,
    linewidth = 1pt,
    roundcorner = 2pt,
    frametitlefont = \alt,
@@ -125,7 +125,9 @@
     numberblanklines = false,
     columns = flexible,
     breaklines = true,
-    captionpos = b,
+    captionpos = t,
+    abovecaptionskip = -5pt,
+    belowcaptionskip = 5pt,
     keywordstyle = \bfseries\color{indigo},
     commentstyle = \itshape\color[HTML]{157F1F},
     stringstyle = \color[HTML]{F45B69},
@@ -136,3 +138,53 @@
     breakautoindent = true,
 }
 
+% theorems config
+
+\declaretheoremstyle[
+    numberwithin=chapter,
+    headfont={\color{darkgray}\large\fontseries{sb}\alt},
+    notefont={\fontseries{mid}\alt},
+    postheadspace=5pt,
+    spaceabove=10pt,
+    spacebelow=10pt,
+]{defstyle}
+
+\declaretheorem[
+    style=defstyle,
+    name=Definizione,
+    refname={definizione,definizioni},
+    Refname={Definizione,Definizioni},
+]{definition}
+
+\declaretheorem[
+    style=defstyle,
+    name=Teorema,
+    refname={teorema,teoremi},
+    Refname={Teorema,Teoremi}
+]{theorem}
+
+\mdfdefinestyle{definition}{
+    linewidth=2pt,
+    topline=false,
+    bottomline=false,
+    rightline=true,
+    leftline=true,
+    innertopmargin=-5pt,
+    linecolor=grayborder,
+    backgroundcolor=grayfiller,
+}
+
+\mdfdefinestyle{theorem}{
+    linewidth=2pt,
+    topline=true,
+    bottomline=true,
+    rightline=false,
+    leftline=false,
+    innertopmargin=0pt,
+    innerbottommargin=10pt,
+    linecolor=grayborder,
+    backgroundcolor=grayfiller,
+}
+
+\surroundwithmdframed[style=definition]{definition}
+\surroundwithmdframed[style=theorem]{theorem}
