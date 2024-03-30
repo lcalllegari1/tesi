@@ -1,0 +1,157 @@
+\chapter{Nozioni Fondamentali}
+
+\section{Problemi di Ottimizzazione}
+Un problema di ottimizzazione $\mathcal{P}$ può essere espresso con la
+formulazione generale
+\begin{equation}\label{eq:opt_prob}
+    \mathcal{P} \colon
+    \begin{cases}
+        \min \text{(or $\max$)} & f(\vec{x}) \\
+                                & \mathcal{S} \\
+                                & \vec{x} \in \mathcal{D}
+    \end{cases}
+\end{equation}
+dove $f(\vec{x})$ è una funzione a valori reali con $\vec{x} = [x_{1},
+\ldots, x_{n}]^T \in \mathcal{D} = D_{1} \times \cdots \times D_{n}$ tale
+che $x_{j} \in D_{j},\, \forall j\colon 1 \le j \le n,\, n \in \mathbb{N}$
+e $\mathcal{S}$ è un insieme finito di vincoli. Formalmente, un vincolo $c
+\in \mathcal{S}$ è una funzione che coinvolge un sottoinsieme di variabili
+e che può assumere i valori vero o falso, che si riferiscono alla
+condizione di vincolo soddisfatto o violato, rispettivamente.
+
+\begin{definition}
+Dato un problema di ottimizzazione $\mathcal{P}$, ogni $\vec{x} \in
+\mathcal{D}$ è detto \textit{soluzione} di $\mathcal{P}$, con $\mathcal{D}$
+il dominio delle variabili del problema. Una soluzione $\vec{x} \in
+\mathcal{D}$ che soddisfi tutti i vincoli in $\mathcal{S}$ è detta
+\textit{ammissibile} per $\mathcal{P}$.
+\end{definition}
+Per riferirci all'insieme di tutte le soluzioni ammissibili per un problema
+$\mathcal{P}$ utilizziamo la notazione $F(\mathcal{P})$. La
+caratterizzazione del dominio $\mathcal{D}$ fornisce un'immediata
+classificazione dei problemi di ottimizzazione.
+\begin{itemize}
+    \item Se il dominio $\mathcal{D}$ è un insieme discreto, il problema è
+        detto di \textit{ottimizzazione discreta}.
+    \item Se il dominio $\mathcal{D}$ è un insieme continuo, il problema è
+        detto di \textit{ottimizzazione continua}.
+\end{itemize}
+Nel caso particolare di un dominio $\mathcal{D}$ che sia un insieme
+discreto e finito, si parla di \textit{ottimizzazione combinatoria}.
+\begin{definition}
+Sia $\mathcal{P}$ un problema di minimizzazione. Una soluzione ammissibile
+$\vec{x^{\star}} \in F(\mathcal{P})$ si dice \textit{ottima} per
+$\mathcal{P}$ se vale che
+\[
+    f(\vec{x^{\star}}) \le f(\vec{x}) \quad
+    \forall \vec{x} \in F(\mathcal{P}).
+\]
+\end{definition}
+Una definzione speculare vale per problemi di massimizzazione. In generale,
+ricercare il massimo di una funzione $f(\vec{x})$ è equivalente a ricercare
+il minimo per la funzione ${-f(\vec{x})}$. Per questo motivo, nel seguito
+potremo riferirci a problemi di minimo senza perdere di generalità. Tutte
+le considerazioni valgono, con le opportune modifiche, anche per i problemi
+di massimo.
+
+Un problema di ottimizzazione $\mathcal{P}$ è \textit{impossibile}
+(infeasible) quando non ha soluzioni ammissibili, ossia quando
+$F(\mathcal{P}) = \varnothing$. Al contrario, si dice che $\mathcal{P}$
+ammette ottimo finito quando esiste una soluzione $\vec{x^{\star}} \in
+F(\mathcal{P})$ ottima per $\mathcal{P}$. In questo caso,
+$f(\vec{x^{\star}})$ è detto valore ottimo per $\mathcal{P}$. Un problema di
+ottimizzazione $\mathcal{P}$ si dice \textit{illimitato} (unbounded),
+quando non esiste alcun limite inferiore a $f(\vec{x})$, per $\vec{x} \in
+F(\mathcal{P})$.
+
+Infine, un problema di ottimizzazione si dice risolto quando viene trovata una
+soluzione ottima, accompagnata dal certificato di ottimalità, oppure
+quando si riesce a dimostrare che il problema è impossible o illimitato.
+
+\subsection{Restrizioni e Rilassamenti}
+\begin{definition}[Restrizione]
+Dato un problema di ottimizzazione $\mathcal{P}$, si definisce
+\textit{restrizione} di $\mathcal{P}$ un problema di ottimizzazione
+$\mathcal{P}'$ ottenuto a partire da $\mathcal{P}$ aggiungendo vincoli.
+Formalmente risulta che $F(\mathcal{P}') \subseteq F(\mathcal{P})$.
+\end{definition}
+Una conseguenza immediata di questa definizione è la seguente. Se una
+soluzione $\bar{\vec{x}}$ è ammissibile per $\mathcal{P}'$, ossia
+$\bar{\vec{x}} \in F(\mathcal{P}')$, allora è anche ammissibile per
+$\mathcal{P}$, cioè $\bar{\vec{x}} \in F(\mathcal{P})$. Se poi
+$\vec{x^{\star}} \in F(\mathcal{P})$ è ottima per $\mathcal{P}$, allora
+vale $f(\vec{x^{\star}}) \le f(\bar{\vec{x}})$. Ed allora, il valore
+associato alla generica soluzione ammissibile $\bar{\vec{x}}$ di
+$\mathcal{P}'$ fornisce un limite superiore (\textit{upper bound}) al
+valore ottimo di $\mathcal{P}$. Inoltre, dalla definzione segue
+che se $\mathcal{P}$ è impossibile, ossia $F(\mathcal{P}) = \varnothing$,
+allora anche ogni sua restrizione $\mathcal{P}'$ è impossibile, cioè
+$F(\mathcal{P}') = \varnothing$. Non vale il viceversa.
+\begin{definition}[Rilassamento]
+Dato un problema di ottimizzazione $\mathcal{P}$, si definisce
+\textit{rilassamento} di $\mathcal{P}$ un problema di ottimizzazione
+$\mathcal{R}$ ottenuto a partire da $\mathcal{P}$ eliminando alcuni vincoli
+e/o sostituendo la funzione obiettivo $f(\vec{x})$ di $\mathcal{P}$ con una
+sua approssimazione inferiore $g(\vec{x}).$ Formalmente, $\mathcal{R}$ è un
+rilassamento di $\mathcal{P}$ se $F(\mathcal{P}) \subseteq F(\mathcal{R})$
+e $g(\vec{x}) \le f(\vec{x}),\, \forall \vec{x} \in F(\mathcal{P})$.
+\end{definition}
+Da questa definizione segue immediatamente che se $\mathcal{R}$ è
+impossibile, ossia $F(\mathcal{R}) = \varnothing$, allora anche
+$\mathcal{P}$ è impossibile, cioè $F(\mathcal{P}) = \varnothing$. Non vale
+il viceversa. Inoltre, è facile verificare che se $\vec{x^{\star}} \in
+F(\mathcal{R})$ è ottima per $\mathcal{R}$, allora $g(\vec{x^{\star}})$ è
+un limite inferiore (\textit{lower bound}) al valore ottimo di
+$\mathcal{P}$. Se invece vale che $\vec{x^{\star}} \in F(\mathcal{R})$ è
+ottima per $\mathcal{R}$ e contemporaneamente $\vec{x^{\star}} \in
+F(\mathcal{P})$, ossia $\vec{x^{\star}}$ è ammissibile per $\mathcal{P}$,
+con $g(\vec{x^{\star}}) = f(\vec{x^{\star}})$, si dimostra facilmente che
+$\vec{x^{\star}}$ è soluzione ottima di $\mathcal{P}$.
+
+\subsection{Ricerca}
+\begin{definition}
+    Sia $\mathcal{P}$ un problema di ottimizzazione. Si definisce
+    \textit{ricerca} il \mbox{processo} che consiste nel risolvere una
+    sequenza finita $\mathcal{P}_1, \ldots, \mathcal{P}_m$ di restrizioni
+    di $\mathcal{P}$.
+\end{definition}
+L'intuizione alla base della ricerca è la seguente. Aggiungendo dei
+vincoli, nel processo di creazione delle restrizioni, si riduce lo
+spazio delle soluzioni ammissibili con l'obiettivo semplificare la
+risoluzione del problema.
+
+Una ricerca è detta \textit{esaustiva} se la sequenza delle restrizioni cui
+fa riferimento copre tutto lo spazio $F(\mathcal{P})$ delle soluzioni
+ammissibili di $\mathcal{P}$. Formalmente, deve valere che
+\begin{equation}
+    \bigcup_{i=1}^{m}F(\mathcal{P}_i) = F(\mathcal{P}).
+\end{equation}
+Una ricerca esaustiva fornisce quindi un modo per risolvere $\mathcal{P}$:
+è sufficiente risolvere tutte le restrizioni $\mathcal{P}_i$, per $1 \le i
+\le m$, e considerare la soluzione migliore.  Inevitabilmente, tale
+soluzione sarà quella ottima per $\mathcal{P}$. Una ricerca non esaustiva è
+invece detta euristica.
+
+Il concetto di ricerca è del tutto generale e si applica differentemente
+a seconda del contesto cui si fa riferimento. Una delle forme di
+ricerca esaustiva è chiamata \textit{generate-and-test}. Come suggerisce il
+nome, l'idea è quella di generare esplicitamente tutte le soluzioni
+$\vec{x} \in \mathcal{D}$ e verificare quali tra queste soddisfano i
+vincoli del problema che stiamo considerando, per poi scegliere la
+migliore. Questo equivale a creare delle restrizioni aggiungendo in
+ciascuna un vincolo relativamente al valore assunto da $\vec{x} \in
+\mathcal{D}$. Questa forma di ricerca è molto semplice ma non molto
+efficiente e per questo motivo è applicabile ad una classe molto ristretta
+di problemi di ottimizzazione.
+
+Una forma di ricerca migliore, che costituisce il punto di partenza per
+tutti gli algoritmi enumerativi utilizzati nei contesti reali, è la ricerca
+ad albero (\textit{tree-search}). L'idea è quella di dividere
+ricorsivamente lo spazio di ricerca di $\mathcal{P}$, fino ad ottenere
+restrizioni sufficientemente facili da risolvere. Uno schema di ricerca di
+questo tipo è spesso combinato con il concetto di rilassamento. L'obiettivo
+è quello di semplificare la soluzione di una restrizione utilizzando un suo
+rilassamento.
+
+\section{Programmazione Lineare}
+
