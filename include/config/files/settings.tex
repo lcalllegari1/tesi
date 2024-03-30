@@ -1,3 +1,7 @@
+% custom commands
+\renewcommand{\vec}[1]{\bm{#1}}
+
+
  % numbered dividers depth & TOC depth
 \setsecnumdepth{subsection}
 \settocdepth{subsection}
@@ -51,7 +55,21 @@
 \addto{\captionsitalian}{\renewcommand{\abstractname}{
         \raisebox{15pt}{\scalebox{.5}{\pgfornament{45}}}\\[10pt]
         Abstract\\[15pt]
-        \raisebox{15pt}{\scalebox{.6}{\pgfornament{88}}}\\}}
+        \raisebox{15pt}{\scalebox{.6}{\pgfornament{88}}}\\
+}}
+
+% image path config
+\graphicspath{{assets/figures/}}
+
+% bibliography config
+\addbibresource{include/back/refs.bib}
+\defbibheading{bibliography}[\refname]{
+    \centering
+    \vspace*{1cm}
+    \alt\bfseries\fortypt Bibliografia \\[15pt]
+    \raisebox{15pt}{\scalebox{.7}{\pgfornament{88}}}\\
+    \vspace{.5cm}
+}
 
 % hyperref setup
 \definecolor{indigo}{HTML}{004777}
