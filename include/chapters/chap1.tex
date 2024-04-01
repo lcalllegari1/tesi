@@ -1,0 +1,110 @@
+\chapter{Nozioni Fondamentali}
+L'obiettivo di questo capitolo è quello di presentare i concetti di base
+che vengono utilizzati nel seguito di questo lavoro e, più in generale,
+nell'ambito dell'ottimizzazione matematica.
+
+\section{Introduzione}
+Ottimizzare significa risolvere un problema trovando la soluzione migliore
+nell'insieme delle soluzioni che abbiamo a disposizione. Il desiderio di
+scegliere la soluzione migliore è così comune che il concetto di
+ottimizzazione è parte integrante di ogni ambito che richieda di risolvere
+problemi decisionali. Nella pratica, risolvere un problema decisionale
+significa assegnare valori alle variabili che lo caratterizzano, con
+la finalità di ottimizzare una grandezza, rispettando un insieme di
+vincoli che limitano le scelte dei valori per queste variabili. La
+grandezza da ottimizzare e i vincoli possono essere spesso
+rappresentati come funzioni delle variabili coinvolte e questo ci permette
+di definire e utilizzare un modello matematico per descrivere il problema che stiamo
+considerando. La formulazione di un modello dovrebbe essere
+sufficientemente complessa da rappresentare accuratamente il problema cui
+si riferisce e, allo stesso tempo, abbastanza semplice da renderlo
+trattabile con gli strumenti risolutivi disponibili.
+
+La ricerca operativa è un ramo della matematica applicata che impiega
+metodi e modelli matematici per risolvere problemi decisionali. Di fronte
+ad un problema del mondo reale, il primo passo è quello di trovare un modello
+matematico che sia in grado di descriverlo. Successivamente si procede con
+l'applicazione dei metodi di ottimizzazione per trovare la soluzione
+migliore. Infine, la soluzione trovata va interpretata e adattata al
+problema reale. Questo processo può anche essere iterato, con l'obiettivo di
+raffinare il modello di riferimento e ottenere
+soluzioni sempre più accurate.
+
+Non tutte le classi di problemi di ottimizzazione si possono risolvere
+all'ottimo in un tempo ragionevole e questo ha portato allo sviluppo di
+algoritmi euristici.
+
+\section{Problemi di Ottimizzazione}
+Un problema di ottimizzazione $\mathcal{P}$ può essere definito con la
+formulazione generale
+
+\begin{equation}
+    \mathcal{P}\colon
+    \begin{cases}
+        \text{$\min$ (or $\max$)} & f(\vec{x}) \\
+                                  & \mathcal{S} \\
+                                  & \vec{x} \in \mathcal{D} \\
+    \end{cases}
+\end{equation}
+dove $f(\vec{x})$ è una funzione a valori reali nelle variabili $\vec{x} =
+[x_{1}\, \ldots \, x_{n}]^T \in \mathcal{D} = D_{1} \times
+\cdots \times D_{n}$ con $x_{j} \in D_{j}\,\,\,\forall j\colon 1 \le j
+\le n,\, n \in \mathbb{N}$ e $\mathcal{S}$ è un insieme finito di vincoli.
+Formalmente, un vincolo $c \in \mathcal{S}$ è una funzione che coinvolge un
+sottoinsieme delle variabili del problema e che può assumere i valori vero
+o falso, corrispondenti alla condizione di vincolo soddisfatto o violato,
+rispettivamente.
+
+Il massimo valore di una funzione $f(\vec{x})$ è il minimo valore della
+funzione $-f(\vec{x})$, a meno del segno. Per questo motivo possiamo
+limitarci a studiare i problemi di minimo senza perdere di generalità.
+Tutte le considerazioni saranno valide, con opportune modifiche, anche per
+i problemi di massimo.
+
+\begin{definition}
+Dato un problema di ottimizzazione $\mathcal{P}$, ogni $\vec{x} \in
+\mathcal{D}$ si dice soluzione di $\mathcal{P}$. Una soluzione di
+$\mathcal{P}$ che soddisfi tutti i vincoli in $\mathcal{S}$ si dice
+ammissibile per $\mathcal{P}$.
+\end{definition}
+Per riferirci all'insieme di tutte le soluzioni ammissibili per un problema
+di ottimizzazione $\mathcal{P}$, utilizzeremo la notazione
+$F(\mathcal{P})$.
+
+La caratterizzazione del dominio $\mathcal{D}$ fornisce una
+classificazione immediata dei problemi di ottimizzazione.
+
+\begin{itemize}
+    \item Se il dominio $\mathcal{D}$ è un insieme discreto, il problema è
+        detto di \textit{ottimizzazione discreta}.
+    \item Se il dominio $\mathcal{D}$ è un insieme continuo, il problema è
+        detto di \textit{ottimizzazione continua}.
+\end{itemize}
+Inoltre, nel caso particolare di un dominio $\mathcal{D}$ che un insieme
+discreto e finito, si parla di \textit{ottimizzazione combinatoria}.
+
+\begin{definition}
+Sia $\mathcal{P}$ un problema di ottimizzazione. Una soluzione ammissibile
+$\vec{x^{\star}} \in F(\mathcal{P})$ si dice ottima per $\mathcal{P}$ se
+\[
+    f(\vec{x^{\star}}) \le f(\vec{x}) \quad \forall \vec{x} \in
+    F(\mathcal{P}).
+\]
+\end{definition}
+Un problema di ottimizzazione $\mathcal{P}$ si dice impossibile
+(\textit{infeasible}) quando non ammette soluzioni ammissibili, ossia
+quando $F(\mathcal{P}) = \varnothing$. Diciamo invece che $\mathcal{P}$ è
+illimitato (\textit{unbounded}) quando non esiste alcun limite inferiore a
+$f(\vec{x})$, per $\vec{x} \in F(\mathcal{P})$. Se esiste una soluzione
+$\vec{x^{\star}} \in \mathcal{P}$ ottima per $\mathcal{P}$, allora diciamo
+che $\mathcal{P}$ ammette ottimo finito. La funzione $f(\vec{x})$ è
+generalmente chiamata funzione obiettivo e il valore $f(\vec{\bar{x}})$ è
+detto costo associato alla soluzione $\vec{\bar{x}} \in F(\mathcal{P})$.
+
+Un problema di ottimizzazione si dice risolto quando si trova una soluzione
+ottima, accompagnata dal certificato di ottimalità, oppure quando si riesce
+a dimostrare che il problema è impossibile o illimitato.
+
+\section{Programmazione Lineare}
+\section{Programmazione Lineare Intera}
+

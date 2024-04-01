@@ -1,12 +1,13 @@
 \documentclass[a4paper, 12pt, twoside, onecolumn, openright, final]{memoir}
 \input{include/config/preamble}
 
+\usepackage{lipsum}
+\usepackage[format=plain, hypcap=false, position=bottom, skip=10pt]{caption}
+
 \checkandfixthelayout
 \begin{document}
 
-\frontmatter % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-\input{include/front/titlepage}
+\frontmatter % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\input{include/front/titlepage}
 \input{include/front/quote}
 \input{include/front/abstract}
 \input{include/front/ack}
@@ -16,8 +17,11 @@
 
 \mainmatter % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+\input{include/chapters/chap1}
 
 
 % >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+\backmatter
+\pagestyle{plain}
 \end{document}
