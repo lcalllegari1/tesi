@@ -156,7 +156,7 @@ ammissibile per $\mathcal{P}$, con $g(\vec{x^{\star}}) =
 f(\vec{x^{\star}})$, allora $\vec{x^{\star}}$ è soluzione ottima per
 $\mathcal{P}$.
 
-\subsection{Ricerca della Soluzione di un Problema di Ottimizzazione}
+\subsection{Il Processo di Ricerca}
 Dato un problema di ottimizzazione $\mathcal{P}$, la ricerca è il processo
 che consiste nel risolvere una sequenza finita $\mathcal{P}_1, \ldots,
 \mathcal{P}_m$ di restrizioni di $\mathcal{P}$. L'intuizione alla base
@@ -209,8 +209,131 @@ euristici, il cui obiettivo non è tanto quello di risolvere un  problema
 all'ottimo ma piuttosto quello di fornire una soluzione accettabile in
 tempi ragionevoli, relativamente allo specifico contesto applicativo.
 
-
-
 \section{Programmazione Lineare}
+La programmazione lineare rappresenta uno dei paradigmi fondamentali
+nell'ambito dell'ottimizzazione, poiché si applica naturalmente ad un'ampia
+classe di problemi del mondo reale, che risultano quindi facili da
+modellare. Inoltre, nel corso del tempo sono stati sviluppati algoritmi in
+grado di risolvere efficientemente problemi di programmazione lineare che
+coinvolgono un numero molto elevato di variabili e vincoli.
+
+Un problema di programmazione lineare (LP), è un problema di ottimizzazione
+in cui la funzione obiettivo e vincoli sono funzioni lineari. Per un problema
+di programmazione lineare $\mathcal{P}$ con $n$ variabili e $m$ vincoli si
+può utilizzare la formulazione generale
+
+\begin{equation}
+\mathcal{P}\colon
+\setlength{\arraycolsep}{2pt}
+\left\{\begin{array}{rrcccccc}
+\min & z\,\, &=& \multicolumn{5}{c}{c_{1}\,x_{1}+\cdots+c_{n}\,x_{n}} \\[15pt]
+     &  a_{11}\,x_{1} &+ &\cdots &+ &a_{1n}\,x_{n} &\sim &b_{1}       \\
+     & \multicolumn{1}{c}{\vdots} &&&&\vdots&& \vdots                 \\
+     &  a_{m1}\,x_{1} &+ &\cdots &+ &a_{mn}\,x_{n} &\sim &b_{m}       \\[15pt]
+     & \multicolumn{7}{l}{\ell_j \le x_{j} \le u_{j} \;\;\, \forall j\colon
+     1 \le j \le n}
+\end{array}\right.\\[10pt]
+\end{equation}
+dove $\sim\,\,\in \{ \le, =, \ge \}$, $\ell_j \in \mathbb{R} \cup
+\{-\infty\}$ e $u_{j} \in \mathbb{R} \cup \{+\infty\}$, con $c_{k} \in
+\mathbb{R} \,\,\, \forall k\colon 1 \le k \le n$, $a_{ij} \in \mathbb{R}
+\,\,\, \forall i,j\colon 1 \le i \le m,\, 1 \le j \le n$ e $b_{i} \in
+\mathbb{R} \,\,\, \forall i\colon 1 \le i \le m$. Le variabili del
+problema hanno come dominio intervalli (eventualmente illimitati) di
+$\mathbb{R}$ e la funzione obiettivo può essere scritta nella forma compatta
+\begin{equation}
+    z = \sum_{k=1}^{n} c_{k}\,x_{k}\,.
+\end{equation}
+Similmente, il generico vincolo può essere scritto come
+\begin{equation}
+    \sum_{j=1}^{n}a_{ij}\,x_{j} \sim b_{i} \qquad \forall i\colon 1 \le i \le m
+.\end{equation}
+
+La proprietà di linearità della funzione obiettivo e dei vincoli permette
+di utilizzare la teoria dell'analisi convessa come base nello sviluppo di
+algoritmi risolutivi per problemi di programmazione lineare.
+
+\subsection{Interpretazione Geometrica}
+Prima di procedere con rappresentazione geometrica di un problema di
+programmazione lineare, è necessario definire i concetti di semispazio
+affine, iperpiano e poliedro.
+
+\begin{definition}
+    Consideriamo $\vec{x} \in \mathbb{R}^n$ e $a, a_{0} \in \mathbb{R}$. Si
+    definisce semispazio chiuso l'insieme
+    \(
+        \{ \vec{x} \in \mathbb{R}^n \mid a\vec{x} \le a_{0}\}.
+    \)
+    Si definisce iperpiano l'insieme
+    \(
+        \{ \vec{x} \in \mathbb{R}^n \mid a\vec{x} = a_{0}\}.
+    \)
+\end{definition}
+Si può dimostrare che un semispazio chiuso è un insieme convesso. Lo stesso
+vale per un iperpiano.  Informalmente, un insieme $\mathcal{C}$ si dice
+convesso quando, per ogni coppia di punti dell'insieme, il segmento che li
+congiunge è interamente contenuto in $\mathcal{C}$.
+\begin{definition}\label{def:poly}
+    Si definisce poliedro un insieme $\mathcal{P} \subseteq \mathbb{R}^n$
+    che è intersezione di un numero finito di semispazi chiusi e iperpiani.
+    Un poliedro limitato è chiamato politopo.
+\end{definition}
+Le definizioni appena presentate ci permettono di concludere che per il
+generico problema di programmazione lineare, lo spazio delle soluzioni
+ammissibili è un insieme convesso e, nello specifico, un poliedro.
+
+La \cref{def:poly} è chiamata descrizione esterna di un poliedro. Esiste
+anche un altro modo di definire un poliedro, che fa uso del concetto di
+vertice e che prende il nome di descrizione interna. Informalmente, un
+vertice di un insieme convesso è un punto che non può essere espresso come
+combinazione lineare convessa stretta di altri due punti dell'insieme.
+Consideriamo ora la descrizione interna di un politopo.
+
+%% FIX FROM HERE
+
+\begin{theorem}
+    Siano $\mathcal{P} \subset \mathbb{R}^n$ un politopo e
+    $\mathcal{V} = \{ \vec{x}_1, \ldots, \vec{x}_k\}$ l'insieme dei suoi
+    vertici. Allora ogni punto $\vec{x} \in \mathcal{P}$ può essere
+    espresso come combinazione lineare convessa dei punti di $\mathcal{V}$.
+    Formalmente,
+    \[
+        \vec{x} \in \mathcal{P} \iff
+            \vec{x} = \sum_{j=1}^{k} \lambda_j \vec{x}_j\,, \text{ con }
+            \sum_{j=1}^{k} \lambda_j = 1,\,
+            \lambda_j \ge 0 \,\,\, \forall j\colon 1 \le j \le k.
+    \]
+\end{theorem}
+La descrizione interna di un politopo è uno strumento importante perché
+permette di dimostrare il teorema fondamentale della programmazione
+lineare, riportato di seguito.
+
+\begin{LPTheorem}
+Consideriamo il problema di programmazione lineare della
+forma
+\(
+    \min \{ z = \vec{c}\vec{x} \mid
+    \vec{x} \in \mathcal{P} \},
+\)
+dove $\mathcal{P}$ è un politopo che rappresenta la regione ammissibile,
+cioè l'insieme dei punti che soddisfano tutti i vincoli che definiscono
+$\mathcal{P}$. Allora, se il problema ammette ottimo finito, esiste almeno
+un vertice di $\mathcal{P}$ che è soluzione ottima.
+\end{LPTheorem}
+Questo teorema ci permette di concludere che a prescindere dal numero delle
+soluzioni ottime di un problema, è sempre possibile trovarne una in
+corrispondenza di uno dei vertici del politopo che definisce la regione
+ammissibile. Quindi possiamo ridurre lo spazio di ricerca delle soluzioni e
+limitarci a ispezionare solamente i vertici del politopo. Ed è proprio
+questa l'intuizione che pone le basi per lo sviluppo dell'algoritmo del
+simplesso, uno degli algoritmi maggiormente impiegati nella risoluzione di
+problemi di programmazione lineare.
+
+Il teorema fondamentale può essere esteso al caso generale di problemi di
+programmazione lineare in cui la regione ammissibile è un poliedro (con
+almeno un vertice) e non necessariamente un politopo. L'ipotesi
+sull'esistenza della soluzione ottima deve comunque valere, per evitare che
+il problema possa risultare illimitato.
+
 \section{Programmazione Lineare Intera}
 
