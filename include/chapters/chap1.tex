@@ -251,11 +251,14 @@ Similmente, il generico vincolo può essere scritto come
 
 La proprietà di linearità della funzione obiettivo e dei vincoli permette
 di utilizzare la teoria dell'analisi convessa come base nello sviluppo di
-algoritmi risolutivi per problemi di programmazione lineare.
+algoritmi risolutivi per problemi di programmazione lineare. In aggiunta,
+questa proprietà semplifica significativamente il processo attraverso cui è
+possibile ottenere formulazioni alternative, tutte equivalenti tra loro,
+relativamente ad uno stesso problema di programmazione lineare.
 
 \subsection{Interpretazione Geometrica}
-Prima di procedere con rappresentazione geometrica di un problema di
-programmazione lineare, è necessario definire i concetti di semispazio
+Prima di procedere con l'analisi della geometria di un problema di
+programmazione lineare, è essenziale definire i concetti di semispazio
 affine, iperpiano e poliedro.
 
 \begin{definition}
@@ -276,15 +279,18 @@ congiunge è interamente contenuto in $\mathcal{C}$.
 \begin{definition}\label{def:poly}
     Si definisce poliedro un insieme $\mathcal{P} \subseteq \mathbb{R}^n$
     che è intersezione di un numero finito di semispazi chiusi e iperpiani.
-    Un poliedro limitato è chiamato politopo.
 \end{definition}
-Le definizioni appena presentate ci permettono di concludere che per il
+Da questa definizione si verifica facilmente che un poliedro è un insieme
+convesso, poiché intersezione di un numero finito di insiemi convessi.
+Inoltre, un poliedro limitato viene chiamato politopo.
+
+Le definizioni appena presentate ci permettono di concludere che, per il
 generico problema di programmazione lineare, lo spazio delle soluzioni
 ammissibili è un insieme convesso e, nello specifico, un poliedro.
 
 La \cref{def:poly} è chiamata descrizione esterna di un poliedro. Esiste
-anche un altro modo di definire un poliedro, che fa uso del concetto di
-vertice e che prende il nome di descrizione interna. Informalmente, un
+anche un modo alternativo di definire un poliedro, che fa uso del concetto
+di vertice e che prende il nome di descrizione interna. Informalmente, un
 vertice di un insieme convesso è un punto che non può essere espresso come
 combinazione lineare convessa stretta di altri due punti dell'insieme.
 Consideriamo ora la descrizione interna di un politopo.
@@ -322,18 +328,24 @@ un vertice di $\mathcal{P}$ che è soluzione ottima.
 \end{LPTheorem}
 Questo teorema ci permette di concludere che a prescindere dal numero delle
 soluzioni ottime di un problema, è sempre possibile trovarne una in
-corrispondenza di uno dei vertici del politopo che definisce la regione
-ammissibile. Quindi possiamo ridurre lo spazio di ricerca delle soluzioni e
-limitarci a ispezionare solamente i vertici del politopo. Ed è proprio
-questa l'intuizione che pone le basi per lo sviluppo dell'algoritmo del
-simplesso, uno degli algoritmi maggiormente impiegati nella risoluzione di
-problemi di programmazione lineare.
+corrispondenza di uno dei vertici del politopo $\mathcal{P}$ che definisce
+la regione ammissibile. Quindi possiamo ridurre lo spazio di ricerca delle
+soluzioni e limitarci a ispezionare solamente i vertici di $\mathcal{P}$.
+Ed è proprio questa l'intuizione che pone le basi per lo sviluppo
+dell'algoritmo del simplesso, uno degli algoritmi maggiormente impiegati
+nella risoluzione di problemi di programmazione lineare.
 
 Il teorema fondamentale può essere esteso al caso generale di problemi di
 programmazione lineare in cui la regione ammissibile è un poliedro (con
 almeno un vertice) e non necessariamente un politopo. L'ipotesi
 sull'esistenza della soluzione ottima deve comunque valere, per evitare che
-il problema possa risultare illimitato.
+il problema possa risultare illimitato o impossibile.
+
+\subsection{Formulazioni Equivalenti}
+\subsection{L'algoritmo del Simplesso}
+\subsection{L'algoritmo del Punto Interno}
+\subsection{Dualità}
+\subsection{Rilassamento Lagrangiano}
 
 \section{Programmazione Lineare Intera}
 

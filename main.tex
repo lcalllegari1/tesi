@@ -3,11 +3,13 @@
 
 \usepackage{lipsum}
 \usepackage[format=plain, hypcap=false, position=bottom, skip=10pt]{caption}
+% \usepackage{showframe} % DEBUG: to show outlines of page layout
 
 \checkandfixthelayout
 \begin{document}
 
-\frontmatter % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\input{include/front/titlepage}
+\frontmatter % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\input{include/front/titlepage}
 \input{include/front/quote}
 \input{include/front/abstract}
 \input{include/front/ack}
@@ -22,6 +24,6 @@
 
 % >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-\backmatter
-\pagestyle{plain}
+%\backmatter
+%\pagestyle{plain}
 \end{document}
