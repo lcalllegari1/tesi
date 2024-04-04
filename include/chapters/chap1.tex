@@ -262,20 +262,23 @@ programmazione lineare, è essenziale definire i concetti di semispazio
 affine, iperpiano e poliedro.
 
 \begin{definition}
-    Consideriamo $\vec{x} \in \mathbb{R}^n$ e $a, a_{0} \in \mathbb{R}$. Si
-    definisce semispazio chiuso l'insieme
+    Siano $\vec{x} \in \mathbb{R}^n,\ \vec{a} \in \mathbb{R}^n$ e $a_{0}
+    \in \mathbb{R}$. Si definiscono semispazio chiuso e iperpiano gli
+    insiemi
     \(
-        \{ \vec{x} \in \mathbb{R}^n \mid a\vec{x} \le a_{0}\}.
+        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^T\vec{x} \le a_{0}\}
     \)
-    Si definisce iperpiano l'insieme
+    e
     \(
-        \{ \vec{x} \in \mathbb{R}^n \mid a\vec{x} = a_{0}\}.
+        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^T\vec{x} = a_{0}\},
     \)
+    rispettivamente.
 \end{definition}
 Si può dimostrare che un semispazio chiuso è un insieme convesso. Lo stesso
-vale per un iperpiano.  Informalmente, un insieme $\mathcal{C}$ si dice
-convesso quando, per ogni coppia di punti dell'insieme, il segmento che li
-congiunge è interamente contenuto in $\mathcal{C}$.
+vale per un iperpiano.  Informalmente, un insieme $\mathcal{C} \subseteq
+\mathbb{R}^n$ si dice convesso quando, per ogni coppia di punti
+dell'insieme, il segmento che li congiunge è interamente contenuto in
+$\mathcal{C}$.
 \begin{definition}\label{def:poly}
     Si definisce poliedro un insieme $\mathcal{P} \subseteq \mathbb{R}^n$
     che è intersezione di un numero finito di semispazi chiusi e iperpiani.
@@ -318,13 +321,14 @@ lineare, riportato di seguito.
 Consideriamo il problema di programmazione lineare della
 forma
 \(
-    \min \{ z = \vec{c}\vec{x} \mid
+    \min \{\vec{c}^T\vec{x} \mid
     \vec{x} \in \mathcal{P} \},
 \)
-dove $\mathcal{P}$ è un politopo che rappresenta la regione ammissibile,
-cioè l'insieme dei punti che soddisfano tutti i vincoli che definiscono
-$\mathcal{P}$. Allora, se il problema ammette ottimo finito, esiste almeno
-un vertice di $\mathcal{P}$ che è soluzione ottima.
+dove $\mathcal{P} \subset \mathbb{R}^n$ è un politopo che rappresenta la
+regione ammissibile, cioè l'insieme dei punti che soddisfano tutti i
+vincoli che definiscono $\mathcal{P}$, e $\vec{c} \in \mathbb{R}^n$. Allora,
+se il problema ammette ottimo finito, esiste almeno un vertice di
+$\mathcal{P}$ che è soluzione ottima.
 \end{LPTheorem}
 Questo teorema ci permette di concludere che a prescindere dal numero delle
 soluzioni ottime di un problema, è sempre possibile trovarne una in
