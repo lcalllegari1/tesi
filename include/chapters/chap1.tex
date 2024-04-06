@@ -34,7 +34,7 @@ Non tutte le classi di problemi di ottimizzazione si possono risolvere
 all'ottimo in un tempo ragionevole e questo ha determinato lo sviluppo di
 algoritmi euristici.
 
-\section{Problemi di Ottimizzazione}
+\section{Problemi di Ottimizzazione}\label{sec:opt_probs}
 Un problema di ottimizzazione $\mathcal{P}$ può essere definito con la
 formulazione generale
 
@@ -359,7 +359,7 @@ utilizzate sono la forma standard e quella canonica, riportate di seguito.
 \begin{align}\notag
     \begin{cases}
         \,\min & \vec{c}^T \vec{x} \\
-             & \vec{A} \vec{x} = \vec{b} \\
+               & \vec{A} \vec{x} = \vec{b} \\\label{eq:LPstd}
              & \vec{x} \ge 0
     \end{cases}\\[7pt] \text{Forma Standard}
 \end{align}
@@ -368,21 +368,140 @@ utilizzate sono la forma standard e quella canonica, riportate di seguito.
     \begin{align}\notag
     \begin{cases}
         \,\min & \vec{c}^T \vec{x} \\
-             & \vec{A} \vec{x} \ge \vec{b} \\
+               & \vec{A} \vec{x} \ge \vec{b} \\\label{eq:LPcanonical}
              & \vec{x} \ge 0
     \end{cases}\\[7pt] \text{Forma Canonica}
 \end{align}
 \end{minipage}\\[10pt]
 \end{subequations}
 dove $\vec{x} \in \mathbb{R}^n$, con $\vec{c} \in \mathbb{R}^n,\ \vec{A}
-\in \mathcal{M}_{m \times n}^{\mathbb{R}}$ e $\vec{b} \in \mathbb{R}^m$.
+\in \mathbb{R}^{m \times n}$ e $\vec{b} \in \mathbb{R}^m$.
 Le trasformazioni necessarie per passare da una forma all'altra consistono
 nell'introduzione di variabili ausiliarie e la convenienza di una forma
 rispetto all'altra dipende dallo specifico contesto applicativo.
 
 \subsection{L'algoritmo del Simplesso}
+Il teorema fondamentale della programmazione lineare ci fornisce uno
+strumento concreto per trovare la soluzione del generico problema
+di programmazione lineare: se il problema ammette ottimo
+finito, allora esiste un vertice del poliedro che rappresenta la regione
+ammissibile che costituisce una soluzione ottima. L'intuizione che deriva
+da questo fatto è immediata. \`E sufficiente enumerare tutti i vertici del
+poliedro e scegliere quello che corrisponde al valore migliore per la
+funzione obiettivo. Il problema di questo approccio è la complessità
+computazionale, che è proporzionale al numero dei vertici del poliedro che
+rappresenta la regione ammissibile. Se il numero dei vertici è molto
+elevato, anche il tempo necessario a enumerarli tutti sarà molto elevato.
+L'algoritmo del simplesso è un algoritmo iterativo che migliora questa
+intuizione per cercare di ridurre il numero dei vertici da visitare per
+trovare la soluzione migliore. L'idea è quella di partire da un vertice
+arbitrario del poliedro e di muoversi ad ogni iterazione in un vertice
+adiacente non peggiore, relativamente al valore della funzione obiettivo.
+
+Una nota importante da fare è la seguente. Nonostante l'algoritmo del
+simplesso scelga di spostarsi tra i vertici del poliedro in maniera
+intelligente, non c'è alcuna garanzia che il vertice corrispondente alla
+soluzione ottima venga trovato prima di aver visitato tutti gli altri
+vertici del poliedro. Si può dimostrare che, per questo motivo, la
+complessità computazionale al caso peggiore cresce in modo esponenziale con
+il numero delle variabili del problema.
+
 \subsection{L'algoritmo del Punto Interno}
+Nel corso del tempo sono stati sviluppati numerosi algoritmi risolutivi per
+problemi di programmazione lineare. Alcuni di questi partono dall'algoritmo
+del simplesso con l'obiettivo di migliorarne l'efficienza  mentre altri si
+basano su intuizioni completamente differenti. Gli algoritmi ai punti
+interni sono un esempio di questi ultimi. L'idea alla base è quella di
+partire da un punto interno al poliedro che identifica la regione
+ammissibile e di spostarsi iterativamente all'interno di quest'ultima
+fino al raggiungimento di un vertice ottimo. Algoritmi di
+questo tipo esistono in molteplici varianti, ciascuna implementata per
+risolvere in maniera efficiente specifiche classi di problemi.
+
+La scelta nell'utilizzo di un algoritmo piuttosto che un altro dipende, tra
+le altre cose, dallo specifico contesto applicativo.
+
 \subsection{Dualità}
+All'inizio della \cref{sec:opt_probs} abbiamo argomentato che per
+dichiarare risolto un problema di ottimizzazione, non è sufficiente trovare
+una soluzione ottima, ma è necessario fornire una dimostrazione
+che attesti l'ottimalità di tale soluzione, relativamente al problema
+considerato.
+
+Per i problemi di programmazione lineare esiste un modo elegante e rigoroso
+per certificare l'ottimalità di una soluzione, che utilizza un problema di
+ottimizzazione di supporto chiamato problema duale. Il problema duale è
+ottenuto a partire dal problema iniziale che, in questo contesto, prende il
+nome di problema primale. L'idea di base è quella di utilizzare i vincoli
+del problema primale per costruire una limitazione alla funzione obiettivo.
+Il concetto può essere compreso meglio attraverso un esempio di carattere
+generale, che viene riportato di seguito.
+
+Sia $\mathcal{P}$ un problema di programmazione lineare con $n$ variabili e
+$m$ vincoli. Senza perdita di generalità, possiamo assumere che
+$\mathcal{P}$ sia espresso nella forma standard \eqref{eq:LPstd} oppure in
+quella canonica \eqref{eq:LPcanonical}. Ad esempio, sia $\mathcal{P}$ della
+forma
+
+\begin{equation}
+    \mathcal{P}\colon
+    \begin{cases}
+        \,\min & \vec{c}^T \vec{x} \\
+               & \vec{A} \vec{x} \ge \vec{b} \\
+             & \vec{x} \ge 0
+    \end{cases}\\[5pt]
+\end{equation}
+dove $\vec{x} \in \mathbb{R}^n$, con $\vec{c} \in \mathbb{R}^n,\ \vec{A}
+\in \mathbb{R}^{m \times n}$ e $\vec{b} \in \mathbb{R}^m$. Vogliamo trovare
+un valore $c_{0} \in \mathbb{R}$ che sia un limite inferiore al valore
+della funzione obiettivo di $\mathcal{P}$, per ogni soluzione ammissibile.
+Inoltre, vogliamo che questo $c_{0}$ fornisca il limite inferiore migliore,
+cioè quello più alto.
+
+Per la generica soluzione ammissibile $\vec{x} \in F(\mathcal{P})$ risulta
+che $\vec{A}\vec{x} \ge \vec{b}$. Allora, introducendo un vettore $\vec{u}
+\in \mathbb{R}^m$, $\vec{u} \ge 0$, chiamato vettore  di moltiplicatori, si
+verifica facilmente che $\vec{u}^T \vec{A} \vec{x} \ge \vec{u}^T\vec{b}$.
+Inoltre, è sempre possibile costruire $\vec{u}$ in modo che valga
+$\vec{c}^T \ge \vec{u}^T \vec{A}$, da cui si trova
+\begin{equation}\label{eq:weak_duality}
+    \vec{c}^T \vec{x} \ge \vec{u}^T \vec{A} \vec{x} \ge \vec{u}^T\vec{b}
+    \quad \forall \vec{x} \in F(\mathcal{P}),
+\end{equation}
+essendo $\vec{x} \ge 0$. Ed allora abbiamo trovato un limite inferiore alla
+funzione obiettivo di $\mathcal{P}$, ossia $c_{0} = \vec{u}^T \vec{b}$. A
+questo punto, dobbiamo scegliere $\vec{u}$ in modo che $c_{0}$ sia il
+massimo possibile. In effetti, questo corrisponde a risolvere il problema
+di programmazione lineare
+
+\begin{equation}
+    \mathcal{D}\colon
+    \begin{cases}
+        \,\max & \vec{u}^T \vec{b} \\
+               & \vec{u}^T\vec{A} \le \vec{c}^T \\
+             & \vec{u} \ge 0
+    \end{cases}\\[5pt]
+\end{equation}
+nella variabile $\vec{u} \in \mathbb{R}^m$, con $\mathcal{D}$ che prende il
+nome di problema duale di $\mathcal{P}$. Con qualche modifica, il
+ragionamento si applica identicamente a problemi espressi nella forma
+standard.
+
+Infine, il teorema della dualità forte riportato di seguito fornisce un
+modo concreto per dimostrare l'ottimalità della soluzione di un problema
+di programmazione lineare.
+\begin{theorem}[Dualità forte]
+    Consideriamo una coppia primale - duale di problemi di programmazione
+    lineare. Allora, se uno dei due ammette ottimo finito, anche l'altro
+    ammette ottimo finito e il valore ottimo della funzione obiettivo è lo
+    stesso per entrambi.
+\end{theorem}
+Quindi, per certificare l'ottimalità della soluzione di un problema
+$\mathcal{P}$ è sufficiente risolvere il suo duale $\mathcal{D}$ e
+verificare che il valore ottimo trovato sia lo stesso per entrambi i
+problemi.
+
+
 \subsection{Rilassamento Lagrangiano}
 
 \section{Programmazione Lineare Intera}
