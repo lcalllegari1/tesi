@@ -37,7 +37,6 @@ algoritmi euristici.
 \section{Problemi di Ottimizzazione}\label{sec:opt_probs}
 Un problema di ottimizzazione $\mathcal{P}$ può essere definito con la
 formulazione generale
-
 \begin{equation}
     \mathcal{P}\colon
     \begin{cases}
@@ -221,7 +220,6 @@ Un problema di programmazione lineare (LP), è un problema di ottimizzazione
 in cui la funzione obiettivo e vincoli sono funzioni lineari. Per un problema
 di programmazione lineare $\mathcal{P}$ con $n$ variabili e $m$ vincoli si
 può utilizzare la formulazione generale
-
 \begin{equation}
 \mathcal{P}\colon
 \setlength{\arraycolsep}{2pt}
@@ -442,7 +440,6 @@ $m$ vincoli. Senza perdita di generalità, possiamo assumere che
 $\mathcal{P}$ sia espresso nella forma standard \eqref{eq:LPstd} oppure in
 quella canonica \eqref{eq:LPcanonical}. Ad esempio, sia $\mathcal{P}$ della
 forma
-
 \begin{equation}
     \mathcal{P}\colon
     \begin{cases}
@@ -473,14 +470,13 @@ funzione obiettivo di $\mathcal{P}$, ossia $c_{0} = \vec{u}^{\tr} \vec{b}$. A
 questo punto, dobbiamo scegliere $\vec{u}$ in modo che $c_{0}$ sia il
 massimo possibile. In effetti, questo corrisponde a risolvere il problema
 di programmazione lineare
-
 \begin{equation}
     \mathcal{D}\colon
     \begin{cases}
         \,\max & \vec{u}^{\tr} \vec{b} \\
                & \vec{u}^{\tr}\vec{A} \le \vec{c}^{\tr} \\
              & \vec{u} \ge 0
-    \end{cases}\\[5pt]
+    \end{cases}
 \end{equation}
 nella variabile $\vec{u} \in \mathbb{R}^m$, con $\mathcal{D}$ che prende il
 nome di problema duale di $\mathcal{P}$. Con qualche modifica, il
@@ -502,6 +498,77 @@ verificare che il valore ottimo trovato sia lo stesso per entrambi i
 problemi.
 
 \subsection{Rilassamento Lagrangiano}
+In alcune situazioni la formulazione di un problema di programmazione
+lineare può essere tanto complessa da impedire l'applicazione diretta di un
+algoritmo risolutivo. In questi casi l'idea è quella di trovare un modo di
+trasformarla in una formulazione differente, con l'obiettivo di
+semplificare la risoluzione del problema. Nel caso migliore, la
+formulazione semplificata è equivalente a quella di partenza, ma è più
+facile da risolvere.
+
+L'intuizione dietro al rilassamento Lagrangiano è quella di semplificare un
+problema eliminando alcuni dei suoi vincoli e aggiungendo un contributo
+alla funzione obiettivo. Questo contributo, che prende il nome di
+penalizzazione Lagrangiana, peggiora il valore della funzione obiettivo per
+ogni soluzione che viola i vincoli rimossi. In questo modo, non c'è
+convenienza nel scegliere una soluzione che violi i vincoli, poiché la
+violazione comporta una penalizzazione sul valore della funzione obiettivo.
+
+A questo punto possiamo formalizzare questo concetto, limitandoci ad
+analizzare gli aspetti fondamentali che riflettono gli obiettivi di questo
+lavoro.
+
+Sia $\mathcal{P}$ un generico problema di programmazione lineare, espresso
+nella forma canonica
+\begin{equation}
+    \mathcal{P}\colon
+    \begin{cases}
+        \,\min & \vec{c}^{\tr} \vec{x} \\
+               & \vec{A} \vec{x} \ge \vec{b} \\
+             & \vec{x} \ge 0
+    \end{cases}
+\end{equation}
+dove $\vec{x} \in \mathbb{R}^n$, con $\vec{c} \in \mathbb{R}^n,\ \vec{A}
+\in \mathbb{R}^{m \times n}$ e $\vec{b} \in \mathbb{R}^m$. Introduciamo un
+vettore $\vec{\lambda} \in \mathbb{R}^m$, $\vec{\lambda} \ge 0$ di
+moltiplicatori duali, chiamati anche moltiplicatori di Lagrange, e definiamo
+la funzione
+\begin{equation}
+    L(\vec{x}, \vec{\lambda}) = \vec{c}^{\tr} \vec{x}
+    + \vec{\lambda}^{\tr} (\vec{b} - \vec{A} \vec{x}),
+\end{equation}
+che è chiamata funzione Lagrangiana di $\mathcal{P}$. Questa funzione ci
+permette di definire la famiglia di problemi Lagrangiani della forma
+\begin{equation}
+    \mathcal{L}(\vec{\lambda})\colon
+    \begin{cases}
+        \,\min &
+    \vec{c}^{\tr} \vec{x} + \vec{\lambda}^{\tr} (\vec{b} - \vec{A}
+    \vec{x}) = L(\vec{x}, \vec{\lambda}) \\
+             & \vec{x} \ge 0 \\
+    \end{cases}
+\end{equation}
+che sono sempre un rilassamento di $\mathcal{P}$ e quindi forniscono un
+limite inferiore al suo valore ottimo. Utilizzando una forma più compatta,
+possiamo scrivere che
+\begin{equation}
+    \mathcal{L}(\vec{\lambda}) = \min_{\vec{x}\,
+    \ge \,0}\; L(\vec{x}, \vec{\lambda}),
+\end{equation}
+con $\mathcal{L}(\vec{\lambda})$ che è chiamata funzione duale di
+$\mathcal{P}$. A questo punto, l'idea è quella di risolvere $\mathcal{P}$
+partendo da $\mathcal{L}(\vec{\lambda})$. Definiamo allora il problema
+duale Lagrangiano
+\begin{equation}
+    \mathcal{D}\colon
+    \begin{cases}
+       \,\max & \mathcal{L}(\vec{\lambda}) \\
+              & \vec{\lambda} \ge 0 \\
+    \end{cases}
+\end{equation}
+che fornisce come valore ottimo il miglior limite inferiore al valore
+ottimo di $\mathcal{P}$. Inoltre, si può dimostrare che i due valori
+coincidono quando $\mathcal{P}$ amette ottimo finito.
 
 \section{Programmazione Lineare Intera}
 
