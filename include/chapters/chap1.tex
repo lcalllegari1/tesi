@@ -47,7 +47,7 @@ formulazione generale
     \end{cases}\\[10pt]
 \end{equation}
 dove $f(\vec{x})$ è una funzione a valori reali nelle variabili $\vec{x} =
-[x_{1}\, \ldots \, x_{n}]^T \in \mathcal{D} = D_{1} \times
+[x_{1}\, \ldots \, x_{n}]^{\tr} \in \mathcal{D} = D_{1} \times
 \cdots \times D_{n}$ con $x_{j} \in D_{j}\,\,\,\forall j\colon 1 \le j
 \le n,\, n \in \mathbb{N}$ e $\mathcal{S}$ è un insieme finito di vincoli.
 Formalmente, un vincolo $c \in \mathcal{S}$ è una funzione che coinvolge un
@@ -266,11 +266,11 @@ affine, iperpiano e poliedro.
     \in \mathbb{R}$. Si definiscono semispazio chiuso e iperpiano gli
     insiemi
     \(
-        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^T\vec{x} \le a_{0}\}
+        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^{\tr}\vec{x} \le a_{0}\}
     \)
     e
     \(
-        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^T\vec{x} = a_{0}\},
+        \{ \vec{x} \in \mathbb{R}^n \mid \vec{a}^{\tr}\vec{x} = a_{0}\},
     \)
     rispettivamente.
 \end{definition}
@@ -321,7 +321,7 @@ lineare, riportato di seguito.
 Consideriamo il problema di programmazione lineare della
 forma
 \(
-    \min \{\vec{c}^T\vec{x} \mid
+    \min \{\vec{c}^{\tr}\vec{x} \mid
     \vec{x} \in \mathcal{P} \},
 \)
 dove $\mathcal{P} \subset \mathbb{R}^n$ è un politopo che rappresenta la
@@ -358,7 +358,7 @@ utilizzate sono la forma standard e quella canonica, riportate di seguito.
 \begin{minipage}{.3\textwidth}
 \begin{align}\notag
     \begin{cases}
-        \,\min & \vec{c}^T \vec{x} \\
+        \,\min & \vec{c}^{\tr} \vec{x} \\
                & \vec{A} \vec{x} = \vec{b} \\\label{eq:LPstd}
              & \vec{x} \ge 0
     \end{cases}\\[7pt] \text{Forma Standard}
@@ -367,7 +367,7 @@ utilizzate sono la forma standard e quella canonica, riportate di seguito.
 \begin{minipage}{.3\textwidth}
     \begin{align}\notag
     \begin{cases}
-        \,\min & \vec{c}^T \vec{x} \\
+        \,\min & \vec{c}^{\tr} \vec{x} \\
                & \vec{A} \vec{x} \ge \vec{b} \\\label{eq:LPcanonical}
              & \vec{x} \ge 0
     \end{cases}\\[7pt] \text{Forma Canonica}
@@ -446,7 +446,7 @@ forma
 \begin{equation}
     \mathcal{P}\colon
     \begin{cases}
-        \,\min & \vec{c}^T \vec{x} \\
+        \,\min & \vec{c}^{\tr} \vec{x} \\
                & \vec{A} \vec{x} \ge \vec{b} \\
              & \vec{x} \ge 0
     \end{cases}\\[5pt]
@@ -461,15 +461,15 @@ cioè quello più alto.
 Per la generica soluzione ammissibile $\vec{x} \in F(\mathcal{P})$ risulta
 che $\vec{A}\vec{x} \ge \vec{b}$. Allora, introducendo un vettore $\vec{u}
 \in \mathbb{R}^m$, $\vec{u} \ge 0$, chiamato vettore  di moltiplicatori, si
-verifica facilmente che $\vec{u}^T \vec{A} \vec{x} \ge \vec{u}^T\vec{b}$.
+verifica facilmente che $\vec{u}^{\tr} \vec{A} \vec{x} \ge \vec{u}^{\tr}\vec{b}$.
 Inoltre, è sempre possibile costruire $\vec{u}$ in modo che valga
-$\vec{c}^T \ge \vec{u}^T \vec{A}$, da cui si trova
+$\vec{c}^{\tr} \ge \vec{u}^{\tr} \vec{A}$, da cui si trova
 \begin{equation}\label{eq:weak_duality}
-    \vec{c}^T \vec{x} \ge \vec{u}^T \vec{A} \vec{x} \ge \vec{u}^T\vec{b}
+    \vec{c}^{\tr} \vec{x} \ge \vec{u}^{\tr} \vec{A} \vec{x} \ge \vec{u}^{\tr}\vec{b}
     \quad \forall \vec{x} \in F(\mathcal{P}),
 \end{equation}
 essendo $\vec{x} \ge 0$. Ed allora abbiamo trovato un limite inferiore alla
-funzione obiettivo di $\mathcal{P}$, ossia $c_{0} = \vec{u}^T \vec{b}$. A
+funzione obiettivo di $\mathcal{P}$, ossia $c_{0} = \vec{u}^{\tr} \vec{b}$. A
 questo punto, dobbiamo scegliere $\vec{u}$ in modo che $c_{0}$ sia il
 massimo possibile. In effetti, questo corrisponde a risolvere il problema
 di programmazione lineare
@@ -477,8 +477,8 @@ di programmazione lineare
 \begin{equation}
     \mathcal{D}\colon
     \begin{cases}
-        \,\max & \vec{u}^T \vec{b} \\
-               & \vec{u}^T\vec{A} \le \vec{c}^T \\
+        \,\max & \vec{u}^{\tr} \vec{b} \\
+               & \vec{u}^{\tr}\vec{A} \le \vec{c}^{\tr} \\
              & \vec{u} \ge 0
     \end{cases}\\[5pt]
 \end{equation}
@@ -500,7 +500,6 @@ Quindi, per certificare l'ottimalità della soluzione di un problema
 $\mathcal{P}$ è sufficiente risolvere il suo duale $\mathcal{D}$ e
 verificare che il valore ottimo trovato sia lo stesso per entrambi i
 problemi.
-
 
 \subsection{Rilassamento Lagrangiano}
 
